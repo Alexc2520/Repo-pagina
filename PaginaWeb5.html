@@ -1,0 +1,345 @@
+<!DOCTYPE html>  
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mundo Gastronómico</title>
+    <style>
+        body {
+            font-family: 'Trebuchet MS', sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background: url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+        }
+
+        header {
+            background: linear-gradient(to right, #ff6f61, #ff9966);
+            padding: 20px;
+            box-shadow: 0px 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        /* CheemsPan más grande y rotación */
+        #imagen1 {
+            width: 120px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.5s ease;
+        }
+
+        #imagen1:hover {
+            transform: rotate(180deg);
+        }
+
+        /* Cheems salta al pasar el mouse */
+        #imagen3 {
+            width: 120px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        #imagen3:hover {
+            animation: salto 0.5s ease;
+        }
+
+        @keyframes salto {
+            0% { transform: translateY(0); }
+            25% { transform: translateY(-50px); }
+            50% { transform: translateY(0); }
+            75% { transform: translateY(-30px); }
+            100% { transform: translateY(0); }
+        }
+
+        .header-text {
+            text-align: center;
+            flex: 1;
+            margin: 0 20px;
+        }
+
+        h1 { margin: 0; font-size: 3em; }
+        h2 { margin: 10px 0; font-size: 1.8em; }
+        h3 { font-size: 1.6em; color: #ffd966; }
+        p { font-size: 18px; margin: 15px; }
+
+        /* Menú desplegable */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            margin: 20px 0;
+        }
+
+        .dropbtn {
+            background-color: #3498db;
+            color: white;
+            padding: 12px 25px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f1f1f1;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 5px;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover { background-color: #ddd; }
+        .dropdown:hover .dropdown-content { display: block; }
+        .dropdown:hover .dropbtn { background-color: #2980b9; }
+
+        nav {
+            background-color: rgba(0,0,0,0.7);
+            padding: 15px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 20px;
+            font-size: 1.2em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover { color: #ffd966; }
+
+        section {
+            background-color: rgba(0, 0, 0, 0.6);
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 15px;
+            max-width: 1000px;
+        }
+
+        .comidas-famosas, .menu-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .comida, .menu-item {
+            background-color: rgba(255,255,255,0.1);
+            padding: 15px;
+            border-radius: 10px;
+            width: 280px;
+        }
+
+        /* Imágenes de comidas y menú solo se expanden ligeramente al pasar mouse */
+        .comida img, .menu-item img {
+            width: 250px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(0,0,0,0.4);
+            transition: transform 0.3s ease;
+        }
+
+        .comida img:hover, .menu-item img:hover {
+            transform: scale(1.1);
+        }
+
+        textarea {
+            width: 80%;
+            height: 100px;
+            border-radius: 10px;
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            margin-top: 10px;
+        }
+
+        button {
+            background-color: #ff6f61;
+            border: none;
+            padding: 10px 20px;
+            color: white;
+            font-size: 16px;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover { background-color: #ff9966; }
+
+        footer {
+            background: linear-gradient(to right, #ff6f61, #ff9966);
+            padding: 10px;
+            margin-top: 20px;
+        }
+
+        /* Botón al formulario */
+        .btn-formulario {
+            display: inline-block;
+            margin-top: 20px;
+            background-color: #27ae60;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 16px;
+            transition: background 0.3s ease;
+        }
+
+        .btn-formulario:hover {
+            background-color: #2ecc71;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <img src="perrito.png" id="imagen1" alt="Imagen 1">
+            <div class="header-text">
+                <h1>Mundo Gastronómico</h1>
+                <h2>Bienvenido</h2>
+                <p>Un viaje por la gastronomía internacional</p>
+            </div>
+            <img src="perritochef.png" id="imagen3" alt="Imagen 3">
+        </div>
+    </header>
+
+    <main>
+        <section>
+            <p>Bienvenidos a mi primera página web gastronómica.  
+            Aquí comparto historia, cultura y curiosidades del arte culinario.</p>
+        </section>
+
+        <section>
+            <h2>Información base</h2>
+            <p>La gastronomía es el arte de preparar y disfrutar la comida.  
+            Abarca técnicas, creatividad y tradición, creando platos que cuentan  
+            historias y representan culturas únicas.</p>
+        </section>
+
+        <section>
+            <h2>Comidas Famosas del Mundo</h2>
+            <div class="comidas-famosas">
+                <div class="comida">
+                    <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836" alt="Pizza italiana">
+                    <h3>Pizza Napolitana (Italia)</h3>
+                    <p>Masa fina, salsa de tomate, mozzarella y albahaca fresca.</p>
+                </div>
+                <div class="comida">
+                    <img src="https://images.unsplash.com/photo-1553621042-f6e147245754" alt="Sushi japonés">
+                    <h3>Sushi (Japón)</h3>
+                    <p>Arroz avinagrado combinado con pescado fresco o vegetales.</p>
+                </div>
+                <div class="comida">
+                    <img src="tacos.jpg">
+                    <h3>Tacos (México)</h3>
+                    <p>Tortilla de maíz o trigo rellena de carne, verduras y salsas.</p>
+                </div>
+                <div class="comida">
+                    <img src="croassant.jpg">
+                    <h3>Croissant (Francia)</h3>
+                    <p>Pan hojaldrado con mantequilla, ideal para el desayuno.</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2 style="color:#ffd966;">Biscoti Dodo</h2>
+            
+            <!-- Menú desplegable -->
+            <div class="dropdown">
+                <button class="dropbtn">Ir a otras páginas</button>
+                <div class="dropdown-content">
+                    <a href="pagina1.html">Página 1</a>
+                    <a href="pagina2.html">Página 2</a>
+                    <a href="pagina3.html">Página 3</a>
+                    <a href="pagina4.html">Página 4</a>
+                </div>
+            </div>
+
+            <nav>
+                <a href="#postres">Postres</a>
+                <a href="#ensaladas">Ensaladas</a>
+                <a href="#entradas">Entradas</a>
+                <a href="#recomendaciones">Recomendaciones</a>
+            </nav>
+
+            <!-- Botón para ir al formulario -->
+            <a href="formulario.html" class="btn-formulario">Ir al Formulario</a>
+        </section>
+
+        <section id="postres">
+            <h2>Postres</h2>
+            <div class="menu-section">
+                <div class="menu-item">
+                    <img src="pastelc.jpg">
+                    <h3>Pastel de Chocolate</h3>
+                    <p>Suave y esponjoso, con cobertura cremosa de cacao.</p>
+                </div>
+                <div class="menu-item">
+                    <img src="helado.jpg">
+                    <h3>Helado Artesanal</h3>
+                    <p>Elaborado con frutas naturales y crema fresca.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="ensaladas">
+            <h2>Ensaladas</h2>
+            <div class="menu-section">
+                <div class="menu-item">
+                    <img src="ensalada.jpg">
+                    <h3>Ensalada Mediterránea</h3>
+                    <p>Tomates, pepino, aceitunas y queso feta con aceite de oliva.</p>
+                </div>
+                <div class="menu-item">
+                    <img src="ensaladacs.jpg">
+                    <h3>Ensalada César</h3>
+                    <p>Lechuga romana, crutones y aderezo césar cremoso.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="entradas">
+            <h2>Entradas</h2>
+            <div class="menu-section">
+                <div class="menu-item">
+                    <img src="bruchetta.jpg">
+                    <h3>Bruschetta</h3>
+                    <p>Pan tostado con tomate, ajo y albahaca fresca.</p>
+                </div>
+                <div class="menu-item">
+                    <img src="pinchospollo.jpg">
+                    <h3>Pinchos de Pollo</h3>
+                    <p>Brochetas de pollo marinadas en hierbas y especias.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="recomendaciones">
+            <h2>Recomendaciones de Clientes</h2>
+            <p>Comparte tu opinión sobre nuestros platillos:</p>
+            <textarea placeholder="Escribe tu recomendación aquí..."></textarea><br>
+            <button>Enviar</button>
+        </section>
+    </main>
+
+    <footer>
+        © 2025 - Creado por Alejandro Cortés Gómez | Estudiante de Gastronomía
+    </footer>
+</body>
+</html>
